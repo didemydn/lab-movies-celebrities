@@ -1,6 +1,7 @@
 //  Add your code here
 const { Schema, model} = require("mongoose");
 
+
 const celebritySchema = new Schema (
     {
         name: String,
@@ -11,4 +12,4 @@ const celebritySchema = new Schema (
 
 const Celebrity = model ("celebrity", celebritySchema);
 
-model.export = Celebrity;
+module.exports = Celebrity;

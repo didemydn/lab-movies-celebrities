@@ -3,12 +3,17 @@ const router = require("express").Router();
 const Celebrity = require ("../models/Celebrity.model");
 
 // get route to create celebrity 
-router.get('/celebrities/create', (req, res) => res.render('celebrities/new-celebrity'));
+router.get('/create', (req, res) => res.render('celebrities/new-celebrity'));
 
 //POST route to submit the form
-router.post('/celebrities/create', (req, res) => {
+router.post('/create', (req, res) => {
     const { name, occupation, catchPhrase } = req.body;
-    Celebrity.create({name, occupation, catchPhrase})
+    console.log("req.body", req.body);
+    Celebrity.create({
+        name, 
+        occupation, 
+        catchPhrase
+    })
         .then(() => {
             res.redirect('/celebrities')
     })
