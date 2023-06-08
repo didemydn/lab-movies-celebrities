@@ -15,7 +15,7 @@ router.post('/create', (req, res) => {
         catchPhrase
     })
         .then(() => {
-            res.redirect('/celebrities')
+            res.redirect('celebrities/celebrities')
     })
         .catch((err) => {
             res.render('celebrities/new-celebrity')
@@ -23,9 +23,9 @@ router.post('/create', (req, res) => {
         })
 
 //GET route to display a list of all the celebrities.
-router.get('/celebrities', (req, res) => {
+router.get('/', (req, res) => {
     Celebrity.find()
-    .then((celebritiesFromDB) => res.render("celebrities", { celebrities: celebritiesFromDB }))
+    .then((celebritiesFromDB) => res.render("celebrities/celebrities", { celebrities: celebritiesFromDB }))
     .catch((err) => console.log(`Error while getting celebrities from the DB: ${err}`));
 });
 
