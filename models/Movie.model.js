@@ -7,9 +7,13 @@ const movieSchema = new Schema (
         title: String,
         genre: String,
         plot: String,
-        cast: [{ type: mongoose.Schema.Types.ObjectId, ref: "Celebrity" }],
-    }
+        cast:[{ type: Schema.Types.ObjectId, ref: "Celebrity" }]
+},
+
+  {
+    timestamps: true,
+  }
 )
-const Movie = model ("movie", movieSchema);
+const Movie = model ("Movie", movieSchema);
 
 module.exports = Movie;

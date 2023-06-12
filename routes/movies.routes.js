@@ -1,12 +1,13 @@
+//Read all celebrities form DB
+const Celebrity = require("../models/Celebrity.model");
+
+const Movie = require("../models/movie.model");
+
 const router = require("express").Router();
 // all your routes here
 
-//Read all celebrities form DB
 
 router.get('/', (req, res) => res.render('movies/movies'));
-
-// Show a form to create a movie
-const Celebrity = require("../models/Celebrity.model");
 
 router.get('/create', (req, res) => {
     Celebrity.find()
@@ -25,11 +26,20 @@ router.post('/create', (req, res) => {
         cast
     })
         .then(() => {
-            res.redirect('movies/movies')
+            console.log("movies added")
+            res.redirect('/movies')
     })
         .catch((err) => {
             res.render('movies/new-movie')
     })
         })
+
+//GET route to display a list of all the celebrities.
+router.get('/', (req, res) => {
+    Movie.find()
+    .then((moviesFromDB) => res.render("movies/movies", { movies: moviesFromDB }))
+    .catch((err) => console.log(`Error while getting celebrities from the DB: ${err}`));
+});
+
 
 module.exports = router;
